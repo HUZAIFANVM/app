@@ -2,7 +2,7 @@ import os
 import requests
 import urllib.parse
 from dotenv import load_dotenv
-
+import streamlit as st
 load_dotenv("D:\\intern\\data-analytics-auditor-tool\\.env")
 
 CLIENT_ID = st.secrets("CLIENT_ID")
