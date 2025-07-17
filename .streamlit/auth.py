@@ -5,9 +5,9 @@ from dotenv import load_dotenv
 import streamlit as st
 load_dotenv("D:\\intern\\data-analytics-auditor-tool\\.env")
 
-CLIENT_ID = st.secrets("CLIENT_ID")
-CLIENT_SECRET = st.secrets("CLIENT_SECRET")
-REDIRECT_URI = st.secrets("REDIRECT_URI", "http://localhost:8502")
+CLIENT_ID = st.secrets["CLIENT_ID"]
+CLIENT_SECRET = st.secrets["CLIENT_SECRET"]
+REDIRECT_URI = st.secrets["REDIRECT_URI"]
 SCOPE = " ".join([
     "https://www.googleapis.com/auth/analytics.readonly",
     "https://www.googleapis.com/auth/documents",
