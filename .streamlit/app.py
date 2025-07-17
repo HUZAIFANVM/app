@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 import time
-from utils.auth import get_auth_url, exchange_code_for_tokens
+from auth import get_auth_url, exchange_code_for_tokens
 from property_list import list_properties
 
 # ---------- PAGE CONFIG ---------- #
