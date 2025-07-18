@@ -76,9 +76,10 @@ if "access_token" not in st.session_state:
         auth_url = get_auth_url()
         st.markdown(
             f"""
-            <div style="text-align:center; margin-top:3em;">
-                <a href="{auth_url}" target="_self">
-                    <button style="
+            <div style=\"text-align:center; margin-top:3em;\">
+                <!-- `target="_top"` ensures Google Auth opens in the top window instead of the iframe that Streamlit uses for unsafe HTML -->
+                <a href=\"{auth_url}\" target=\"_top\" rel=\"noopener noreferrer\">
+                    <button style=\"
                         background-color:white;
                         color:#444;
                         padding:0.8em 1.6em;
@@ -87,12 +88,12 @@ if "access_token" not in st.session_state:
                         font-weight:600;
                         font-size:16px;
                         box-shadow:0 2px 5px rgba(0,0,0,0.1);
-                        display:flex; align-items:center; gap:10px;">
-                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="height:20px;">
+                        display:flex; align-items:center; gap:10px;\">
+                        <img src=\"https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg\" style=\"height:20px;\">
                         Login with Google
                     </button>
                 </a>
-                <p style="color:#666;">Please authorize to access your GA4 properties.</p>
+                <p style=\"color:#666;\">Please authorize to access your GA4 properties.</p>
             </div>
         """,
             unsafe_allow_html=True,
@@ -182,9 +183,9 @@ if submitted:
 
             if pdf_url := result.get("pdf_url"):
                 buttons_html += f"""
-                    <a href="{pdf_url}" target="_blank">
-                        <button style="background-color:#9147ff; color:white; padding:0.8em 1.6em;
-                        border:none; border-radius:6px; font-size:16px; margin-top:1em;">
+                    <a href=\"{pdf_url}\" target=\"_blank\" rel=\"noopener noreferrer\">
+                        <button style=\"background-color:#9147ff; color:white; padding:0.8em 1.6em;
+                        border:none; border-radius:6px; font-size:16px; margin-top:1em;\">
                             📄 Download PDF Report
                         </button>
                     </a>
@@ -192,9 +193,9 @@ if submitted:
 
             if gdoc_url := result.get("gdoc_url"):
                 buttons_html += f"""
-                    <a href="{gdoc_url}" target="_blank">
-                        <button style="background-color:#4285F4; color:white; padding:0.8em 1.6em;
-                        border:none; border-radius:6px; font-size:16px; margin-top:1em;">
+                    <a href=\"{gdoc_url}\" target=\"_blank\" rel=\"noopener noreferrer\">
+                        <button style=\"background-color:#4285F4; color:white; padding:0.8em 1.6em;
+                        border:none; border-radius:6px; font-size:16px; margin-top:1em;\">
                             📝 Open Google Docs Report
                         </button>
                     </a>
@@ -213,9 +214,7 @@ if submitted:
                 "The audit request timed out. Please try again later or check your network connection.")
         except requests.exceptions.RequestException as e:
             status.update(label="❌ Audit Failed", state="error")
-            st.error(f"Audit failed due to a network error: {e}")
-        except Exception as e:
-            status.update(label="❌ Audit Failed", state="error")
-            st.error(f"Audit failed: {e}")
+            st.error(f"Audit failed due to a network error: {
+
 
 
