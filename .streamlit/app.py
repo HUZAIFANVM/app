@@ -136,6 +136,11 @@ if submitted:
             )
             response.raise_for_status()
             result = response.json()
+            if not result:
+                st.warning("⚠️ The GA4 data retrieved appears to be incomplete or not sufficiently rich for auditing. Please ensure that data is being collected properly in your GA4 property and try again later.")
+                status.update(label="⚠️ Insufficient Data", state="error")
+                st.stop()
+
             status.update(label="✅ Audit Complete", state="complete")
 
             # ---------- RESULTS ---------- #
