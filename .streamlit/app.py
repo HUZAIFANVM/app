@@ -214,7 +214,11 @@ if submitted:
                 "The audit request timed out. Please try again later or check your network connection.")
         except requests.exceptions.RequestException as e:
             status.update(label="❌ Audit Failed", state="error")
-            st.error(f"Audit failed due to a network error: {
+            st.error(f"Audit failed due to a network error: {e}")
+        except Exception as e:
+            status.update(label="❌ Audit Failed", state="error")
+            st.error(f"Audit failed: {e}")
+
 
 
 
