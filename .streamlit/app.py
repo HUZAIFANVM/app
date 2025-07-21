@@ -161,7 +161,7 @@ if submitted:
                     <a href="{result['pdf_url']}" target="_blank">
                         <button style="background-color:#9147ff; color:white; padding:0.8em 1.6em;
                         border:none; border-radius:6px; font-size:16px; margin-top:1em;">
-                            📄 Download PDF Report
+                            📝Download PDF Report
                         </button>
                     </a>
                 """
