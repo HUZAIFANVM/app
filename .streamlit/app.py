@@ -171,7 +171,7 @@ if submitted:
                     <a href="{result['gdoc_url']}" target="_blank">
                         <button style="background-color:#4285F4; color:white; padding:0.8em 1.6em;
                         border:none; border-radius:6px; font-size:16px; margin-top:1em;">
-                            📝 Open Google Docs Report
+                            📝 Google Docs Report
                         </button>
                     </a>
                 """, unsafe_allow_html=True)
