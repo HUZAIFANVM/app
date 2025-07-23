@@ -107,22 +107,27 @@ except Exception as e:
     st.stop()
 
 st.markdown("### 🔍 Select GA4 Property")
-
 with st.container():
     with st.form("ga4_audit_form", border=False):
-        with st.container():
         st.markdown('<div class="audit-container">', unsafe_allow_html=True)
-        
+
+        # GA4 Property dropdown
         prop_names = [p[0] for p in properties]
-        selected_index = st.selectbox("Choose your GA4 Property", options=range(len(prop_names)),
-                                      format_func=lambda i: prop_names[i])
-        
+        selected_index = st.selectbox(
+            "Choose your GA4 Property",
+            options=range(len(prop_names)),
+            format_func=lambda i: prop_names[i]
+        )
+
+        # Site Type dropdown
         site_type = st.selectbox(
             "Select Site Type",
             options=["ecommerce", "leadgen", "other"],
             index=0
         )
+
         submitted = st.form_submit_button("✨ Run Audit")
+
         st.markdown('</div>', unsafe_allow_html=True)
 
 
