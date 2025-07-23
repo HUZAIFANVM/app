@@ -110,7 +110,7 @@ st.markdown("### 🔍 Select GA4 Property")
 
 with st.container():
     with st.form("ga4_audit_form", border=False):
-    with st.container():
+        with st.container():
         st.markdown('<div class="audit-container">', unsafe_allow_html=True)
         
         prop_names = [p[0] for p in properties]
