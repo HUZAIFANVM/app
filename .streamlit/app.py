@@ -140,8 +140,10 @@ if submitted:
             payload = {
                 "audit_type": "full",
                 "property_id": properties[selected_index][1],
-                "access_token": access_token
-            }
+                "access_token": access_token,
+                "site_type": site_type  # 👈 Added this line
+                }
+
 
             response = requests.post(
                 "https://us-central1-marketlytics-dataware-house.cloudfunctions.net/data-analytics-tool",
