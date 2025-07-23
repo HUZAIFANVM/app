@@ -162,12 +162,6 @@ if submitted:
             st.markdown("## 🧾 Audit Summary")
             st.success("Audit successfully completed!")
 
-            if not result.get("ecommerce_included", False):
-                st.warning("⚠️ Ecommerce data missing. Skipping ecommerce-related checks.")
-
-            if not result.get("anomaly_included", False):
-                st.warning("⚠️ Revenue anomaly check skipped due to insufficient data.")
-
             # ---------- Download Buttons ---------- #
             buttons_html = ""
 
