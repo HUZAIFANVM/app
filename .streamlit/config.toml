@@ -1,7 +1,7 @@
 [theme]
 base = "light"
 primaryColor = "#ff2a6d"
-backgroundColor = "#fdf6e3"  # Soft parchment
-secondaryBackgroundColor = "#fff9e6"  # Lighter cream
-textColor = "#2a2a4a"
+backgroundColor = "#f0f8ff"  # Alice blue
+secondaryBackgroundColor = "#e6f7ff"  # Light azure
+textColor = "#1e2a3a"
 font = "monospace"
