@@ -1,8 +1,7 @@
-# .streamlit/config.toml
 [theme]
-base = "dark"
+base = "light"
 primaryColor = "#ff2a6d"
-backgroundColor = "#1a1a2e"
-secondaryBackgroundColor = "#16213e"
-textColor = "#f0e3ca"
+backgroundColor = "#fdf6e3"  # Soft parchment
+secondaryBackgroundColor = "#fff9e6"  # Lighter cream
+textColor = "#2a2a4a"
 font = "monospace"
