@@ -1,7 +1,2 @@
 [theme]
 base = "light"
-primaryColor = "#ff2a6d"
-backgroundColor = "#f0f8ff"  # Alice blue
-secondaryBackgroundColor = "#e6f7ff"  # Light azure
-textColor = "#1e2a3a"
-font = "monospace"
