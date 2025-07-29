@@ -6,43 +6,90 @@ from property_list import list_properties
 # ---------- PAGE CONFIG ---------- #
 st.set_page_config(page_title="GA4 Audit App", page_icon="📊", layout="wide")
 
-# ---------- CUSTOM CSS ---------- #
+# ---------- MODERN CUSTOM CSS ---------- #
 st.markdown("""
     <style>
-        html, body {
-            background-color: #fafafa;
-        }
-        .main {
+        html, body, .main {
+            background-color: #f8f9fb;
             font-family: 'Segoe UI', sans-serif;
             color: #2E2E2E;
         }
+
         h1, h2, h3 {
-            color: #2E2E2E;
+            color: #1f1f1f;
+            margin-top: 0;
         }
-        .stButton>button {
+
+        .stButton > button {
             background-color: #9147ff;
             color: white;
             border-radius: 8px;
-            padding: 0.6em 1.2em;
+            padding: 0.7em 1.5em;
             font-size: 16px;
             font-weight: 500;
             border: none;
-            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-            transition: background 0.3s ease;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+            transition: all 0.25s ease;
         }
-        .stButton>button:hover {
+
+        .stButton > button:hover {
             background-color: #722ccf;
+            transform: scale(1.02);
         }
-        .selectbox-label {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.2em;
-        }
+
         .audit-container {
-            background: white;
+            background-color: #ffffff;
             padding: 2em;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border-radius: 14px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            margin-top: 1em;
+        }
+
+        .stSelectbox > div {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .stSelectbox label, .stTextInput label {
+            font-weight: 600 !important;
+            color: #333 !important;
+            margin-bottom: 0.4em;
+        }
+
+        a > button {
+            transition: all 0.2s ease-in-out;
+        }
+
+        a > button:hover {
+            transform: scale(1.03);
+        }
+
+        .auth-center {
+            text-align: center;
+            margin-top: 3em;
+        }
+
+        .auth-center button {
+            background-color: white;
+            color: #444;
+            padding: 0.8em 1.6em;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: auto;
+        }
+
+        .auth-center img {
+            height: 20px;
+        }
+
+        .stStatus {
+            font-size: 16px;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -50,7 +97,7 @@ st.markdown("""
 # ---------- HEADER WITH LOGO ---------- #
 col1, col2 = st.columns([1, 6])
 with col1:
-    st.image("https://marketlytics.com/wp-content/uploads/2023/03/logo-2-1-1024x366-1.png", width=2000)
+    st.image("https://marketlytics.com/wp-content/uploads/2023/03/logo-2-1-1024x366-1.png", width=220)
 with col2:
     st.markdown("""
         <h1 style="font-size:2em; margin-bottom:0;">GA4 Analytics Audit</h1>
@@ -65,19 +112,10 @@ if "access_token" not in st.session_state:
     if "code" not in query_params:
         auth_url = get_auth_url()
         st.markdown(f"""
-            <div style="text-align:center; margin-top:3em;">
+            <div class="auth-center">
                 <a href="{auth_url}" target="_blank">
-                    <button style="
-                        background-color:white; 
-                        color:#444; 
-                        padding:0.8em 1.6em;
-                        border:1px solid #ccc; 
-                        border-radius:8px; 
-                        font-weight:600; 
-                        font-size:16px;
-                        box-shadow:0 2px 5px rgba(0,0,0,0.1);
-                        display:flex; align-items:center; gap:10px;">
-                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="height:20px;">
+                    <button>
+                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg">
                         Login with Google
                     </button>
                 </a>
@@ -130,7 +168,6 @@ with st.container():
 
         st.markdown('</div>', unsafe_allow_html=True)
 
-
 # ---------- PERFORM AUDIT ---------- #
 if submitted:
     with st.status("Running GA4 Audit...", expanded=True) as status:
@@ -141,9 +178,8 @@ if submitted:
                 "audit_type": "full",
                 "property_id": properties[selected_index][1],
                 "access_token": access_token,
-                "site_type": site_type  # 👈 Added this line
-                }
-
+                "site_type": site_type
+            }
 
             response = requests.post(
                 "https://us-central1-marketlytics-dataware-house.cloudfunctions.net/data-analytics-tool",
@@ -151,6 +187,7 @@ if submitted:
             )
             response.raise_for_status()
             result = response.json()
+
             if not result:
                 st.warning("⚠️ The GA4 data retrieved appears to be incomplete or not sufficiently rich for auditing. Please ensure that data is being collected properly in your GA4 property and try again later.")
                 status.update(label="⚠️ Insufficient Data", state="error")
@@ -196,6 +233,7 @@ if submitted:
         except Exception as e:
             status.update(label="❌ Audit Failed", state="error")
             st.error(f"Audit failed: {e}")
+
 
 
 
